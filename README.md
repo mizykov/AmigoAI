@@ -1,5 +1,3 @@
-# AmigoAI
-
 # AmigoAI Telegram Bot
 
 <div align="center">
