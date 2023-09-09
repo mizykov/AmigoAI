@@ -1,0 +1,2 @@
+# AmigoAI
+Smart 
