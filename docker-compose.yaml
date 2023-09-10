@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+    postgresql:
+        image: postgres
+        restart: always
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+        ports:
+          - '5432:5432'
+        volumes:
+          - ./postgres-data:/var/lib/postgresql/data
+          - ./amigoai/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+
+    telegram_bot:
+        build: .
+        depends_on:
+          - postgresql
+        restart: always
+        environment:
+          - TG_BOT_TOKEN=${TG_BOT_TOKEN}
+          - POSTGRES_HOST=postgresql
