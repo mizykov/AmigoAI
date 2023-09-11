@@ -6,6 +6,7 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY src/ src/
-COPY tools/start_bot.sh tools/start_bot.sh
+COPY src/server/start_app.sh src/server/start_app.sh
+RUN chmod 777 src/server/start_app.sh
 
-CMD tools/start_bot.sh
+CMD src/server/start_app.sh

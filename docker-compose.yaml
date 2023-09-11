@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    postgresql:
+    postgres:
         image: postgres
         restart: always
         environment:
@@ -11,13 +11,18 @@ services:
           - '5432:5432'
         volumes:
           - ./postgres-data:/var/lib/postgresql/data
-          - ./amigoai/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+          - ./src/postgres_init/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
 
     telegram_bot:
         build: .
         depends_on:
-          - postgresql
+          - postgres
         restart: always
         environment:
+          - OPENAI_APY_KEY=${OPENAI_APY_KEY}
           - TG_BOT_TOKEN=${TG_BOT_TOKEN}
-          - POSTGRES_HOST=postgresql
+          - DB_HOST=${DB_HOST}
+          - DB_PORT=${DB_PORT}
+          - DB_NAME=${DB_NAME}
+          - DB_USER=${DB_USER}
+          - DB_PASSWORD=${DB_PASSWORD}
