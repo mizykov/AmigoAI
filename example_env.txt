@@ -1,0 +1,9 @@
+# Default
+DB_HOST='postgres'
+DB_PORT='5432'
+DB_NAME='postgres'
+DB_USER='postgres'
+DB_PASSWORD='postgres'
+# Your secrets
+OPENAI_APY_KEY=
+TG_BOT_TOKEN=
